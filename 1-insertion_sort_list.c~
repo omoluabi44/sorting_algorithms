@@ -1,0 +1,49 @@
+#include "sort.h"
+/**
+ *insertion_sort_list - sort an doubly linked in asceding order
+ *@list: the doubly linked list to be sorted
+ */
+void insertion_sort_list(listint_t **list)
+{
+	listint_t *tmp, *sorted, *next_m, *head;
+
+	head = *list;
+
+	if (head == NULL)
+		return;
+
+	while (head != NULL)
+	{
+		next_m = head->next;
+
+		if (sorted == NULL || head->n < sorted->n)
+		{
+			head->next = sorted;
+			if (sorted != NULL)
+			{
+				sorted->prev = head;
+			}
+			print_list(*list);
+			sorted = head;
+		}
+		else
+		{
+			tmp = sorted;
+			while (tmp->next != NULL && tmp->next->n < head->n)
+			{
+				tmp = tmp->next;
+				print_list(*list);
+			}
+			print_list(*list);
+			head->next = tmp->next;
+			if (tmp->next != NULL)
+				tmp->next->prev = head;
+			tmp->next = head;
+			head->prev = tmp;
+			/**print_list(*list);*/
+		}
+		print_list(*list);
+		head = next_m;
+	}
+	*list = sorted;
+}
